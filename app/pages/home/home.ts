@@ -1,6 +1,9 @@
 import {Component, ViewChild} from "@angular/core";
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {Slides} from 'ionic-angular';
+import {AgeValidator} from '../../validators/age';
+import {UsernameValidator} from '../../validators/username';
+
 
 @Component({
   templateUrl: 'build/pages/home/home.html'
@@ -22,14 +25,14 @@ export class HomePage {
   constructor(private formBuilder: FormBuilder) {
 
     this.slideOneForm = formBuilder.group({
-      firstName: [''],
-      lastName: [''],
-      age: ['']
+      firstName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z]*'), Validators.required])],
+      lastName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z]*'), Validators.required])],
+      age: ['', AgeValidator.isValid]
     });
 
     this.slideTwoForm = formBuilder.group({
-      username: [''],
-      privacy: [''],
+      username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]')]), UsernameValidator.checkUsername],
+      privacy: ['', Validators.required],
       bio: ['']
     });
 
@@ -45,6 +48,20 @@ export class HomePage {
 
   save(){
 
+    this.submitAttempt = true;
+
+    if(!this.slideOneForm.valid) {
+      this.signupSlider.slideTo(0);
+    }
+    else if (!this.slideTwoForm.valid) {
+      this.signupSlider.slideTo(1);
+    }
+    else {
+        console.log("success!")
+        console.log(this.slideOneForm.value);
+        console.log(this.slideTwoForm.value);
+    }
+ 
   }
 
   elementChanged(input){
