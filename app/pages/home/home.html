@@ -1,0 +1,50 @@
+<ion-navbar *navbar>
+  <ion-title>
+    Sign Up
+  </ion-title>
+  <ion-buttons start>
+    <button (click)="prev()"><ion-icon name="arrow-back"></ion-icon>Prev</button>
+  </ion-buttons>
+  <ion-buttons end>
+    <button (click)="next()">Next<ion-icon name="arrow-forward"></ion-icon></button>
+  </ion-buttons> 
+</ion-navbar>
+
+<ion-content class="home">
+
+  <ion-slides #signupSider pager>
+    <ion-slide>
+
+    <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+    <ion-list no-lines>   
+      <form [ngFormModel]="slideOneForm">
+        
+        <ion-item>
+          <ion-label floating>First Name</ion-label>
+          <ion-input #firstName (change)="elementChanged(firstName)" ngControl="firstName" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Last Name</ion-label>
+          <ion-input #lastName (change)="elementChanged(lastName)" ngControl="lastName" type="text">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Age</ion-label>
+          <ion-input #age (change)="elementChanged(age)" ngControl="age" type="number"></ion-input>
+        </ion-item>
+
+      </form>
+    </ion-list>
+
+    </ion-slide>
+
+    <ion-slide>
+      
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>
