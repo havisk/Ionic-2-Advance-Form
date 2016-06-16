@@ -42,9 +42,54 @@
     </ion-slide>
 
     <ion-slide>
-      
+      <br /> <ion-list no-lines>
+      <form [ngFormModel]="slideTwoForm">
+
+        <ion-item>
+          <ion-label floating>Username</ion-label>
+          <ion-input #username (change)="elementChanged(username)" ngControl="username" type="text">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Privacy</ion-label>
+          <ion-select #privacy (change)="elementChanged(privacy)" ngControl="privacy">
+            <ion-option value="public" checked="true">Public</ion-option>
+            <ion-option value="friends">Friends Only</ion-option>
+            <ion-option value="private">Private</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Bio</ion-label>
+          <ion-textarea ngControl="bio"></ion-textarea>
+        </ion-item>
+      </form>
+
+    </ion-list>
+
+    <button primary (click)="save()">Create Account</button>
+
+
     </ion-slide>
 
   </ion-slides>
 
 </ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

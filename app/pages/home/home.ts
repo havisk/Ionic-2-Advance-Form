@@ -27,6 +27,12 @@ export class HomePage {
       age: ['']
     });
 
+    this.slideTwoForm = formBuilder.group({
+      username: [''],
+      privacy: [''],
+      bio: ['']
+    });
+
   }
 
   next() {
